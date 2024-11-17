@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Movies = () => {
+const Movies = async ({params}) => {
+  const {movieId}= await params;
   return (
     <div>Movies</div>
   )
