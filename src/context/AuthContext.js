@@ -16,6 +16,7 @@ import {
   toastSuccessNotify,
   toastWarnNotify,
 } from "@/helpers/ToastNotify";
+import { useRouter } from "next/navigation";
 
 export const AuthContext = createContext();
 //* with custom hook
@@ -25,6 +26,7 @@ export const useAuthContext = () => {
 
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(false);
+  const router=useRouter()
   // JSON.parse(sessionStorage.getItem("user"))
 
   useEffect(() => {
@@ -44,6 +46,7 @@ const AuthContextProvider = ({ children }) => {
         displayName: displayName,
       });
       toastSuccessNotify("Registered successfully!");
+      router.push("/profile")
       console.log(userCredential);
     } catch (err) {
       toastErrorNotify(err.message);

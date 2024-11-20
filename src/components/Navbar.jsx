@@ -10,6 +10,7 @@ import {
   Transition,
 } from "@headlessui/react";
 import Link from "next/link";
+import { useAuthContext } from "@/context/AuthContext";
 
 const Navbar = () => {
   const [showBackground, setShowBackground] = useState(false);
@@ -33,7 +34,7 @@ const Navbar = () => {
   }, []);
 
   //* with custom hook
-  const currentUser = { displayName: "felix franko" };
+  const {currentUser} = useAuthContext();
   // const currentUser = false;
 
   return (
