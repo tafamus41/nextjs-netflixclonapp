@@ -15,6 +15,8 @@ import { useAuthContext } from "@/context/AuthContext";
 const Navbar = () => {
   const [showBackground, setShowBackground] = useState(false);
 
+  const {logOut}=useAuthContext()
+
   useEffect(() => {
     const handleScroll = () => {
       // console.log(window.scrollY);
@@ -104,7 +106,7 @@ const Navbar = () => {
                       </Link>
                     </MenuItem>
                     <MenuItem>
-                      <span className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                      <span className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 cursor-pointer" onClick={logOut}>
                         Logout
                       </span>
                     </MenuItem>
