@@ -1,6 +1,4 @@
 import React from "react";
-
-//? aplikasyonun herhangi bir yerinde gecikme oluştuğunda otomatik loading.js dosyası render edilir
 const Loading = () => {
   return (
     <div className="text-center">
