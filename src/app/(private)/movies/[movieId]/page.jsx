@@ -5,14 +5,11 @@ import {
 } from "@/helpers/movieFunctions";
 import { BackspaceIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-// import { useParams } from "next/navigation";
 import VideoSection from "../components/VideoSection";
 
 const MovieDetail = async ({ params }) => {
   const { movieId } = params;
 
-  //* client componentlerde params yakalama
-  // const { movieId } = useParams()
   const movieDetail = await getMovieDetail(movieId);
   const { title } = movieDetail;
   const videoKey = await getVideoKey(movieId);
@@ -35,8 +32,6 @@ const MovieDetail = async ({ params }) => {
 };
 
 export default MovieDetail;
-
-// Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
   const movies = await getMovies("now_playing");
 
