@@ -27,8 +27,7 @@ export const useAuthContext = () => {
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(false);
   const router=useRouter()
-  // JSON.parse(sessionStorage.getItem("user"))
-
+  
   useEffect(() => {
     userObserver();
   }, []);
