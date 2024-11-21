@@ -1,6 +1,7 @@
 "use client";
 import {
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   onAuthStateChanged,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
@@ -24,15 +25,15 @@ export const useAuthContext = () => {
 
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(false);
-  const router=useRouter()
-  
+  const router = useRouter();
+
   useEffect(() => {
     userObserver();
   }, []);
 
   const createUser = async (email, password, displayName) => {
     try {
-      await createUserWithEmailAndPassword(
+      let userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
@@ -41,7 +42,8 @@ const AuthContextProvider = ({ children }) => {
         displayName: displayName,
       });
       toastSuccessNotify("Registered successfully!");
-      router.push("/profile")
+      router.push("/profile");
+      console.log(userCredential);
     } catch (err) {
       toastErrorNotify(err.message);
     }
@@ -49,14 +51,13 @@ const AuthContextProvider = ({ children }) => {
 
   const signIn = async (email, password) => {
     try {
-      //? mevcut kullanıcının giriş yapması için kullanılan firebase metodu
-      await signInWithEmailAndPassword(
+      let userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
       toastSuccessNotify("Logged in successfully!");
-      router.push("/profile")
+      router.push("/profile");
     } catch (err) {
       toastErrorNotify(err.message);
     }
@@ -84,10 +85,12 @@ const AuthContextProvider = ({ children }) => {
   };
 
   const signUpProvider = () => {
+    const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-      .then(() => {
+      .then((result) => {
+        console.log(result);
         toastSuccessNotify("Logged in successfully!");
-        router.push("/profile")
+        router.push("/profile");
       })
       .catch((error) => {
         console.log(error);
@@ -115,3 +118,4 @@ const AuthContextProvider = ({ children }) => {
 };
 
 export default AuthContextProvider;
+
