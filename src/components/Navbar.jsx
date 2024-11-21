@@ -19,7 +19,6 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // console.log(window.scrollY);
       const TOP_OFFSET = 60;
       if (window.scrollY >= TOP_OFFSET) {
         setShowBackground(true);
@@ -35,11 +34,7 @@ const Navbar = () => {
     };
   }, []);
 
-  //* with custom hook
   const { currentUser } = useAuthContext();
-  // const currentUser = { displayName: "felix franko" };
-  // const currentUser = false;
-
   return (
     <>
       <Disclosure as="nav" className="text-white fixed top-0 z-20 w-full">
@@ -58,7 +53,6 @@ const Navbar = () => {
                 <h5 className="mr-2 capitalize">{currentUser?.displayName}</h5>
               )}
 
-              {/* Profile dropdown */}
               <Menu as="div" className="relative">
                 <div>
                   <MenuButton className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
